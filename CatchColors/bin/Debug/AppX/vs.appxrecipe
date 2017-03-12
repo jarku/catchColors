@@ -28,7 +28,7 @@
     <AppXManifest Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-03-12T17:16:04.168</Modified>
+      <Modified>2017-03-12T22:32:44.159</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +164,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\assets\sprites.json">
       <PackagePath>assets\sprites.json</PackagePath>
-      <Modified>2017-01-22T15:53:37.293</Modified>
+      <Modified>2017-03-12T19:47:35.803</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\index.html">
       <PackagePath>index.html</PackagePath>
@@ -172,15 +172,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\js\config\views.js">
       <PackagePath>js\config\views.js</PackagePath>
-      <Modified>2017-03-12T17:01:22.259</Modified>
+      <Modified>2017-03-12T22:29:20.106</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\js\core\loader.js">
       <PackagePath>js\core\loader.js</PackagePath>
-      <Modified>2017-03-12T16:58:19.490</Modified>
+      <Modified>2017-03-12T22:31:00.021</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\js\main.js">
       <PackagePath>js\main.js</PackagePath>
-      <Modified>2017-03-12T17:12:51.331</Modified>
+      <Modified>2017-03-12T22:28:16.654</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\js\repos\scene.js">
       <PackagePath>js\repos\scene.js</PackagePath>
@@ -209,7 +209,7 @@
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\bin\Debug\ReverseMap\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-03-12T17:16:04.027</Modified>
+      <Modified>2017-03-12T22:32:43.946</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
