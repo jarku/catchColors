@@ -142,12 +142,6 @@
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\js\repos\sceneRepository.js">
       <PackagePath>js\repos\sceneRepository.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\libs\jquery.js">
-      <PackagePath>libs\jquery.js</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\libs\json.js">
-      <PackagePath>libs\json.js</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\falle\Desktop\PG2d\CatchColors\CatchColors\libs\pixi.js">
       <PackagePath>libs\pixi.js</PackagePath>
     </AppxPackagedFile>

@@ -37,6 +37,4 @@ js\core\loader.js
 js\main.js
 js\repos\scene.js
 js\repos\sceneRepository.js
-libs\jquery.js
-libs\json.js
 libs\pixi.js

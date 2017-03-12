@@ -97,8 +97,6 @@
     <Content Include="css\default.css" />
     <Content Include="js\repos\scene.js" />
     <Content Include="js\repos\sceneRepository.js" />
-    <Content Include="libs\jquery.js" />
-    <Content Include="libs\json.js" />
     <Content Include="libs\pixi.js" />
     <None Include="CatchColors_TemporaryKey.pfx" />
   </ItemGroup>
