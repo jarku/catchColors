@@ -1,5 +1,4 @@
-﻿//main.js
-var Container = PIXI.Container,
+﻿var Container = PIXI.Container,
     loader = PIXI.loader,
     resources = PIXI.loader.resources,
     TextureCache = PIXI.utils.TextureCache,
@@ -8,22 +7,13 @@ var Container = PIXI.Container,
     Text = PIXI.Text,
     Graphics = PIXI.Graphics,
     player,
-    playerSpeed = 3,
+    playerSpeed = 5,
     enemySpeed = 3,
-    switchMove = 1,
     enemies = [],
     state,
-    gameWonText,
-    gameLostText,
-    playerHealth = 100,
     GAME_WIDTH = 1280,
     GAME_HEIGHT = 720,
-    sprites = [],
-    activeSceneName,
-    levelRepo = new sceneRepository(),
     sceneRepo = new sceneRepository(),
-    arrowDown,
-    arrowUp,
     arrowRight,
     arrowLeft,
     isTouchDevice = false;
@@ -48,13 +38,17 @@ if (('ontouchstart' in window) ||
     isTouchDevice = true;
 }
 
+//initate game assets
 loader
   .add("assets/sprites.json")
   .load(loadGame);
 
-//Set the game state
+//initate player control
+var keyboard = new Keyboard();
+window.addEventListener("keydown", keyboard.handleKeyDown.bind(keyboard), false);
+window.addEventListener("keyup", keyboard.handleKeyUp.bind(keyboard), false);
 
-function menu() { };
+//Set the game state
 state = menu;
 
 //Start the game loop
@@ -76,9 +70,13 @@ function resize(event) {
                   Math.ceil(720 * ratio));
 };
 
+
+
 function gameLoop() {
 
     requestAnimationFrame(gameLoop);
+
     state();
-    renderer.render(stage);
+
+    setTimeout(() => { renderer.render(stage); }, 16);
 }

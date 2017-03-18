@@ -1,6 +1,7 @@
 ﻿views = [
     {
         "viewName": "mainMenu",
+        "visibleOnStart": true,
         "ui": [{
             'type': 'sprite',
             "name": 'background',
@@ -25,7 +26,8 @@
             "y": 400,
             "visible": true,
             "interaction": true,
-            "displayView": 'game'
+            "displayView": 'game',
+            "action": 'startGame'
         }, {
             'type': 'sprite',
             "name": 'settings',
@@ -39,6 +41,7 @@
         ]
     },{
         "viewName": "settings",
+        "visibleOnStart": false,
         "ui": [{
             'type': 'sprite',
             "name": 'goBack',
@@ -52,6 +55,7 @@
         ]
     },{
         "viewName": "game",
+        "visibleOnStart": false,
         "ui": [{
             'type': 'sprite',
             "name": 'goBack',

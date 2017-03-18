@@ -1,11 +1,12 @@
 ﻿'use strict'
 
-//game loading function
+/**
+* Loading assets and creating scenes
+*/
 function loadGame() {
     let id = resources["assets/sprites.json"].textures,
         levelData,
-        viewsQuantity = views.length,
-        isTouchDevice = false;
+        viewsQuantity = views.length;
 
     for (let index = 0; index < viewsQuantity; index = index + 1) {
         let view = views[index],
@@ -13,10 +14,10 @@ function loadGame() {
 
         viewContainer.name = view.viewName;
 
-        if (view.viewName != 'mainMenu') {
-            viewContainer.visible = false;
-        } else {
+        if (view.visibleOnStart && true === view.visibleOnStart) {
             sceneRepo.setActiveScene(view.viewName);
+        } else {
+            viewContainer.visible = false;
         }
 
         if (view.ui) {
@@ -27,10 +28,11 @@ function loadGame() {
         }
 
         if (view.characters) {
-            let childsQuantity = view.characters.length;
+            let childsQuantity = view.characters.length,
+                charactersAmount = 0;
             for (let index = 0; index < childsQuantity; index++) {
                 if (view.characters[index].amount) {
-                    let charactersAmount = view.characters[index].amount;
+                    charactersAmount = view.characters[index].amount;
                     for (let counter = 0; counter < charactersAmount; counter++) {
                         addChildToContainer(view.characters[index], viewContainer);
                     }
@@ -74,7 +76,20 @@ function loadGame() {
             if (true === element.interaction) {
                 child.interactive = true;
 
-                if (element.displayView) {
+                if (element.action) {
+                    child.displayView = element.displayView;
+                    if ("startGame" === element.action) {
+                        var clickAction = function () {
+                            this.parent.visible = false;
+                            sceneRepo.setActiveScene(this.displayView);
+                            sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
+                            setLevel();
+                        };
+                    }
+                   
+                    child.click = clickAction;
+                    child.touchstart = clickAction;
+                } else if (element.displayView) {
                     child.displayView = element.displayView;
                     let clickAction = function () {
                         this.parent.visible = false;
@@ -83,6 +98,8 @@ function loadGame() {
                     };
                     child.click = clickAction;
                     child.touchstart = clickAction;
+                } else {
+                    return;
                 }
             }
 
@@ -90,10 +107,8 @@ function loadGame() {
         }
 
         //add mainMenu to repository
-        let createdScene = new scene(viewContainer, view.viewName);
+        let createdScene = new Scene(viewContainer);
         sceneRepo.addScene(createdScene);
         stage.addChild(createdScene.getSceneContainer());
     }
-
-    //playerControl();
 }
