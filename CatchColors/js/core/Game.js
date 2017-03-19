@@ -1,6 +1,8 @@
 ﻿function Game(Keyboard) {
     this._player;
+    this._playerStartHealth = '3';
     this._enemies = [];
+    this._enemySpeed = 3;
     this._keyboard = Keyboard;
     this._playerSpeed = 5;
     this._state = this.menu;
@@ -31,21 +33,64 @@ Game.prototype.getEnemies = function () {
 };
 
 /**
-* Method sets level sprites.
+* Method sets game state.
+*/
+Game.prototype.setState = function (state) {
+    if (state === 'play') {
+        this._state = this.play;
+    } else if (state === 'pause') {
+        this._state = this.pause;
+    } else if (state === 'menu') {
+        this._state = this.menu;
+    } else {
+        this._state = this.pause;
+    }
+};
+
+/**
+* Method sets level sprites and resets game.
 */
 Game.prototype.setLevel = function () {
     let activeScene = sceneRepo.getActiveScene();
 
     //set player
     this._player = sceneRepo.getSceneByName(activeScene).getSprite('player');
-    this._player.x = 600;
-    this._player.vx = 0;
+    this.resetPlayer();
 
-    //set player health
-    life = sceneRepo.getSceneByName(activeScene).getSprite('lifeCounter');
-    life.text = '3';
+    //set displayed health
+    let life = sceneRepo.getSceneByName(activeScene).getSprite('lifeCounter');
+    life.text = this._playerStartHealth;
+
+    //set enemies
+    this._enemies = sceneRepo.getSceneByName(activeScene).getEnemies();
+    this.resetEnemies();
 
     this.setState('play');
+};
+
+/**
+* Method resets enemy sprites positions and velocity.
+*/
+Game.prototype.resetEnemies = function () {
+    let enemiesQuantity = this._enemies.length;
+
+    for (let index = 0; index < enemiesQuantity; index++) {
+        if (this._enemies[index].startPositionX) {
+            this._enemies[index].x = this._enemies[index].startPositionX;
+        } else {
+            this._enemies[index].x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
+        }
+        
+        this._enemies[index].vx = this._enemySpeed;
+    }
+};
+
+/**
+* Method resets player sprite position and velocity.
+*/
+Game.prototype.resetPlayer = function () {
+    this._player.x = 600;
+    this._player.vx = 0;
 };
 
 /**
@@ -53,6 +98,7 @@ Game.prototype.setLevel = function () {
 */
 Game.prototype.play = function () {
     this.movePlayer();
+    this.moveEnemies();
 };
 
 /**
@@ -80,7 +126,8 @@ Game.prototype.gameLoop = function () {
 };
 
 /**
-* Method moves player sprite.
+* Method check's if key was pushed .
+* and moves player sprite
 */
 Game.prototype.movePlayer = function () {
     if (this._keyboard.getKeysState().ARROW_LEFT) {
@@ -92,16 +139,50 @@ Game.prototype.movePlayer = function () {
 };
 
 /**
-* Method sets game state.
+* Method moves enemies.
 */
-Game.prototype.setState = function (state) {
-    if (state === 'play') {
-        this._state = this.play;
-    } else if (state === 'pause') {
-        this._state = this.pause;
-    } else if (state === 'menu') {
-        this._state = this.menu;
-    } else {
-        this._state = this.pause;
+Game.prototype.moveEnemies = function () {
+    this._enemies.forEach(function (enemy) {
+        if ("reverse" === enemy.moveDirection) {
+            enemy.x -= enemy.vx;
+        } else {
+            enemy.x += enemy.vx;
+        }
+
+        let enemyHitsWall = Game.prototype.contain(enemy, {
+            x: enemy.width,
+            y: enemy.height,
+            width: 1280 - enemy.width,
+            height: 720 - enemy.height
+        });
+
+        if (true === enemyHitsWall) {
+            enemy.vx *= -1;
+        }
+    });
+};
+
+
+/**
+* Method checks if object is contained in another.
+* @param {object} sprite that should be contained
+* @param {object} container that should contain object
+* @returns {boolean}
+*/
+Game.prototype.contain = function (sprite, container) {
+    let contain = false;
+
+    //Left
+    if (sprite.x < container.x) {
+        sprite.x = container.x;
+        contain = true;
     }
+
+    //Right
+    if (sprite.x + sprite.width > container.width) {
+        sprite.x = container.width - sprite.width;
+        contain = true;
+    }
+
+    return contain;
 };

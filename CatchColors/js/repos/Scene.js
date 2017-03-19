@@ -21,7 +21,7 @@ Scene.prototype.getSceneName = function () {
 /**
 * Method returns sprite with given name.
 * @param {string} name of sprite
-* @param {object} sprite
+* @returns {object} sprite
 */
 Scene.prototype.getSprite = function (spriteName) {
     let sceneSpritesQuantity = this._sceneContainer.children.length;
@@ -37,8 +37,7 @@ Scene.prototype.getSprite = function (spriteName) {
 
 /**
 * Method returns enemies.
-* @param {string} name of sprite
-* @param {array} sprite
+* @returns {array}
 */
 Scene.prototype.getEnemies = function () {
     let sceneSpritesQuantity = this._sceneContainer.children.length,

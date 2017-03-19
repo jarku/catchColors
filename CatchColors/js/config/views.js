@@ -107,25 +107,51 @@
             'type': 'sprite',
             "name": 'player',
             "asset": 'santa.png',
-            "x": 600,
+            "x": 500,
             "y": 600,
             "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
             "asset": 'bat.png',
-            "amount": '4',
             "color": 'red',
             "y": 100,
+            "x": 100,
+            "visible": true
+        }, {
+            'type': 'sprite',
+            "name": 'enemy',
+            "asset": 'bat.png',
+            "color": 'red',
+            "y": 100,
+            "x": 900,
+            "visible": true
+        }, {
+            'type': 'sprite',
+            "name": 'enemy',
+            "asset": 'bat.png',
+            "color": 'red',
+            "y": 100,
+            "x": 300,
             "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
             "asset": 'ghost.png',
-            "amount": '2',
             "color": 'blue',
             "y": 100,
-            "visible": true
+            "x": 400,
+            "visible": true,
+            "moveDirection": "reverse"
+        }, {
+            'type': 'sprite',
+            "name": 'enemy',
+            "asset": 'ghost.png',
+            "color": 'blue',
+            "y": 100,
+            "x": 800,
+            "visible": true,
+            "moveDirection": "reverse"
             }
         ],
     }
