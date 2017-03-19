@@ -83,7 +83,7 @@ function loadGame() {
                             this.parent.visible = false;
                             sceneRepo.setActiveScene(this.displayView);
                             sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
-                            setLevel();
+                            game.setLevel();
                         };
                     }
                    

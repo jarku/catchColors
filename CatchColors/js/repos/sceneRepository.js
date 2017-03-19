@@ -1,38 +1,50 @@
-﻿//sceneRepository.js
-sceneRepository = function () {
-    var scenes = [];
-    var activeSceneName = '';
-
-    this.addScene = function (scene) {
-        scenes.push(scene);
-        console.log('scene ' + scene.getSceneName());
-    };
-
-    this.getSceneByName = function (name) {
-        console.log(scenes);
-        var scenesQuantity = scenes.length;
-
-        for (var index = 0; index < scenesQuantity; ++index) {
-
-            if (scenes[index].getSceneName() === name) {
-
-                return scenes[index];
-            }
-        }
-    };
-
-    this.setActiveScene = function (sceneName) {
-        console.log('activeScene set: ' + sceneName);
-        this.activeSceneName = sceneName;
-    };
-
-    this.getActiveScene = function () {
-        console.log('activeScene ' + this.activeSceneName);
-        return this.activeSceneName;
-    };
-
-    this.getAllScenes = function () {
-        console.log(scenes);
-        return scenes;
-    };
+﻿function sceneRepository() {
+    this._scenes = [];
+    this._activeSceneName = '';
 }
+
+/**
+* Adds scene to repo.
+*/
+sceneRepository.prototype.addScene = function (scene) {
+    this._scenes.push(scene);
+};
+
+/**
+* Method returns scene from repo by name.
+* @returns {object}
+*/
+sceneRepository.prototype.getSceneByName = function (sceneName) {
+    let scenesQuantity = this._scenes.length;
+
+    for (let index = 0; index < scenesQuantity; ++index) {
+        if (this._scenes[index].getSceneName() === sceneName) {
+            return this._scenes[index];
+        }
+    }
+
+    return {};
+};
+
+/**
+* Method sets active scene name.
+*/
+sceneRepository.prototype.setActiveScene = function (sceneName) {
+    this._activeSceneName = sceneName;
+};
+
+/**
+* Method returns name of actual active scene.
+* @returns {string}
+*/
+sceneRepository.prototype.getActiveScene = function () {
+    return this._activeSceneName;
+};
+
+/**
+* Method returns all repository scenes.
+* @returns {array}
+*/
+sceneRepository.prototype.getAllScenes = function () {
+    return this._scenes;
+};

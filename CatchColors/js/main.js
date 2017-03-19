@@ -6,11 +6,6 @@
     Sprite = PIXI.Sprite,
     Text = PIXI.Text,
     Graphics = PIXI.Graphics,
-    player,
-    playerSpeed = 5,
-    enemySpeed = 3,
-    enemies = [],
-    state,
     GAME_WIDTH = 1280,
     GAME_HEIGHT = 720,
     sceneRepo = new sceneRepository(),
@@ -27,7 +22,7 @@ renderer.view.style.position = "absolute";
 renderer.view.style.top = "0px";
 renderer.view.style.left = "0px";
 
-resize();
+//resize();
 
 document.body.appendChild(renderer.view);
 
@@ -48,17 +43,10 @@ var keyboard = new Keyboard();
 window.addEventListener("keydown", keyboard.handleKeyDown.bind(keyboard), false);
 window.addEventListener("keyup", keyboard.handleKeyUp.bind(keyboard), false);
 
-//Set the game state
-state = menu;
+var game = new Game(keyboard);
 
-//Start the game loop
-gameLoop();
-
+//Resize window
 window.onresize = function (event) {
-    resize();
-};
-
-function resize(event) {
     var windowHeight = window.innerHeight;
     var windowWidth = window.innerWidth;
 
@@ -70,13 +58,14 @@ function resize(event) {
                   Math.ceil(720 * ratio));
 };
 
+//Start the game loop
+game.gameLoop();
 
+//Animate game
+animate();
 
-function gameLoop() {
+function animate() {
 
-    requestAnimationFrame(gameLoop);
-
-    state();
-
-    setTimeout(() => { renderer.render(stage); }, 16);
+    requestAnimationFrame(animate);
+    renderer.render(stage);
 }
