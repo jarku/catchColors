@@ -1,12 +1,12 @@
-﻿'use strict'
+﻿function Loader() {
+    this._sprites = resources["assets/sprites.json"].textures;
+}
 
 /**
-* Loading assets and creating scenes
+* Method loads sprites.
 */
-function loadGame() {
-    let id = resources["assets/sprites.json"].textures,
-        levelData,
-        viewsQuantity = views.length;
+Loader.prototype.loadSprites = function () {
+    let viewsQuantity = views.length;
 
     for (let index = 0; index < viewsQuantity; index = index + 1) {
         let view = views[index],
@@ -23,7 +23,7 @@ function loadGame() {
         if (view.ui) {
             let childsQuantity = view.ui.length;
             for (let index = 0; index < childsQuantity; index++) {
-                addChildToContainer(view.ui[index], viewContainer);
+                this.addChildToContainer(view.ui[index], viewContainer);
             }
         }
 
@@ -34,82 +34,12 @@ function loadGame() {
                 if (view.characters[index].amount) {
                     charactersAmount = view.characters[index].amount;
                     for (let counter = 0; counter < charactersAmount; counter++) {
-                        addChildToContainer(view.characters[index], viewContainer);
+                        this.addChildToContainer(view.characters[index], viewContainer);
                     }
                 } else {
-                    addChildToContainer(view.characters[index], viewContainer);
+                    this.addChildToContainer(view.characters[index], viewContainer);
                 }
             }
-        }
-
-        function addChildToContainer(element, viewContainer) {
-            let child;
-            if ('sprite' === element.type) {
-                child = new Sprite(id[element.asset]);
-            } else if ('text' === element.type) {
-                child = new Text(
-                element.txt,
-                    {
-                        font: element.font,
-                        fill: element.fill
-                    }
-                );
-            } else {
-                return;
-            }
-
-            child.name = element.name;
-            child.visible = element.visible;
-
-            if (element.x || element.x === 0) {
-                child.x = element.x;
-                child.startPositionX = element.x;
-            } else {
-                child.x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
-            }
-
-            if (element.y || element.y === 0) {
-                child.y = element.y;
-                child.startPositionY = element.y;
-            } else {
-                child.y = GAME_HEIGHT - Math.floor((Math.random() * GAME_HEIGHT) + 1);
-            }
-
-            if (element.moveDirection) {
-                child.moveDirection = element.moveDirection;
-            } 
-
-            if (true === element.interaction) {
-                child.interactive = true;
-
-                if (element.action) {
-                    child.displayView = element.displayView;
-                    if ("startGame" === element.action) {
-                        var clickAction = function () {
-                            this.parent.visible = false;
-                            sceneRepo.setActiveScene(this.displayView);
-                            sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
-                            game.setLevel();
-                        };
-                    }
-                   
-                    child.click = clickAction;
-                    child.touchstart = clickAction;
-                } else if (element.displayView) {
-                    child.displayView = element.displayView;
-                    let clickAction = function () {
-                        this.parent.visible = false;
-                        sceneRepo.setActiveScene(this.displayView);
-                        sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
-                    };
-                    child.click = clickAction;
-                    child.touchstart = clickAction;
-                } else {
-                    return;
-                }
-            }
-
-            viewContainer.addChild(child);
         }
 
         //add mainMenu to repository
@@ -118,3 +48,72 @@ function loadGame() {
         stage.addChild(createdScene.getSceneContainer());
     }
 }
+
+/**
+* Method adds sprite to container.
+*/
+Loader.prototype.addChildToContainer = function (element, viewContainer) {
+    let child;
+    if ('sprite' === element.type) {
+        child = new Sprite(this._sprites[element.asset]);
+    } else if ('text' === element.type) {
+        child = new Text(
+        element.txt,
+            {
+                font: element.font,
+                fill: element.fill
+            }
+        );
+    }
+
+    child.name = element.name;
+    child.visible = element.visible;
+
+    if (element.x || element.x === 0) {
+        child.x = element.x;
+        child.startPositionX = element.x;
+    } else {
+        child.x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
+    }
+
+    if (element.y || element.y === 0) {
+        child.y = element.y;
+        child.startPositionY = element.y;
+    } else {
+        child.y = GAME_HEIGHT - Math.floor((Math.random() * GAME_HEIGHT) + 1);
+    }
+
+    if (element.moveDirection) {
+        child.moveDirection = element.moveDirection;
+    }
+
+    if (true === element.interaction) {
+        child.interactive = true;
+
+        if (element.action) {
+            child.displayView = element.displayView;
+            if ("startGame" === element.action) {
+                var clickAction = function () {
+                    this.parent.visible = false;
+                    sceneRepo.setActiveScene(this.displayView);
+                    sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
+                    game.setLevel();
+                };
+            }
+
+            child.click = clickAction;
+            child.touchstart = clickAction;
+        } else if (element.displayView) {
+            child.displayView = element.displayView;
+            let clickAction = function () {
+                this.parent.visible = false;
+                sceneRepo.setActiveScene(this.displayView);
+                sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
+            };
+            child.click = clickAction;
+            child.touchstart = clickAction;
+        }
+    }
+
+    viewContainer.addChild(child);
+};

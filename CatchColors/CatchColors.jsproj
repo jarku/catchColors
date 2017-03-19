@@ -95,7 +95,6 @@
     <Content Include="js\core\loader.js" />
     <Content Include="js\core\Keyboard.js" />
     <Content Include="js\core\Game.js" />
-    <Content Include="js\core\state.js" />
     <Content Include="js\main.js" />
     <Content Include="css\default.css" />
     <Content Include="js\repos\Scene.js" />
