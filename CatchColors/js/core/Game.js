@@ -64,10 +64,9 @@ Game.prototype.setLevel = function () {
     life.text = this._playerStartHealth;
 
     //set enemies
-    //this._enemies = sceneRepo.getSceneByName(activeScene).getEnemies();
-    this._enemy = sceneRepo.getSceneByName(activeScene).getSprite('enemy');
-    this._enemy.newX = this._enemy.x;
-    //this.resetEnemies();
+    this._enemies = sceneRepo.getSceneByName(activeScene).getEnemies();
+    //this._enemy = sceneRepo.getSceneByName(activeScene).getSprite('enemy');
+    this.resetEnemies();
 
     this.setState('play');
 };
@@ -79,13 +78,10 @@ Game.prototype.resetEnemies = function () {
     let enemiesQuantity = this._enemies.length;
 
     for (let index = 0; index < enemiesQuantity; index++) {
-        if (this._enemies[index].startPositionX) {
-            this._enemies[index].x = this._enemies[index].startPositionX;
-        } else {
-            this._enemies[index].x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
-        }
-        
-        this._enemies[index].vx = this._enemySpeed;
+        this._enemies[index].x = Game.prototype.getRandom(40, 1240);
+        this._enemies[index].y = Game.prototype.getRandom(40, 300);
+        this._enemies[index].newX = Game.prototype.getRandom(40, 1240);
+        this._enemies[index].newY = Game.prototype.getRandom(40, 300);
     }
 };
 
@@ -146,56 +142,55 @@ Game.prototype.movePlayer = function () {
 * Method moves enemies.
 */
 Game.prototype.moveEnemies = function () {
-        console.log('movechicken');
-
-
-       
-            if (this._enemy.x == this._enemy.newX) {
-
-
-                this.move = Game.prototype.enemyNextMove();
-
-                this._enemy.vx = this.move.howFar;
-                this._enemy.newX += this._enemy.vx;
-
-                setTimeout(() => {
-
-                    this._enemy.x += this._enemy.vx;
-                
-
-                }, 16);
-
-                console.log('test');
-            }
-        
-        
-        
-        
-        
-        /*let enemyHitsWall = Game.prototype.contain(enemy, {
-            x: enemy.width,
-            y: enemy.height,
-            width: 1280 - enemy.width,
-            height: 200 - enemy.height
-        });
-
-        if (true === enemyHitsWall) {
-            enemy.vx *= -1;
-
-        }*/
+    this._enemies.forEach(function (enemy) {
+        if (enemy.x < enemy.newX) {
+            enemy.x += 1;
+            //console.log('right ' + enemy.x, enemy.newX);
+        } else if (enemy.x > enemy.newX) {
+            enemy.x -= 1;
+            //console.log('left ' + enemy.x, enemy.newX);
+        } else if (enemy.y > enemy.newY) {
+            enemy.y -= 1;
+            //console.log('top ' + enemy.y, enemy.newY);
+        } else if (enemy.y < enemy.newY) {
+            enemy.y += 1;
+            //console.log('down ' + enemy.y, enemy.newY);
+        } else {
+            //console.log('switch move');
+            this.move = Game.prototype.enemyNextMove(enemy.x, enemy.y);
+            enemy.newX = this.move.newX;
+            enemy.newY = this.move.newY;
+        }
+    });
 };
 
 /**
 * Method generates and returns enemy random next move
 * @returns {object}
 */
-Game.prototype.enemyNextMove = function () {
+Game.prototype.enemyNextMove = function (x, y) {
+    const moveDirection = Game.prototype.getRandom(0, 3),
+        howFar = Game.prototype.getRandom(20, 60);
+    let newX = 0, newY = 0;
+
+    if (0 === moveDirection) { //left
+        newX = Game.prototype.getRandom(40, 1240);
+        newY = y;
+    } else if (1 === moveDirection) { //right
+        newX = Game.prototype.getRandom(40, 1240);
+        newY = y;
+    } else if (2 === moveDirection) { //top
+        newX = x;
+        newY = Game.prototype.getRandom(40, 300);
+    } else if (3 === moveDirection) { //down
+        newX = x;
+        newY = Game.prototype.getRandom(40, 300);
+    }
+
     return {
-        direction: Game.prototype.getRandom(5, 100),
-        howFar: Game.prototype.getRandom(0, 3)
+        newX, newY
     };
 }
-
 
 /**
 * Method returns a random number between min and max value
@@ -204,7 +199,6 @@ Game.prototype.enemyNextMove = function () {
 Game.prototype.getRandom = function (min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
-
 
 /**
 * Method checks if object is contained in another.
