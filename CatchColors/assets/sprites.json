@@ -1,49 +1,10 @@
 {
-  "frames": {
-    "twoGifts.png": {
-      "frame": {
-        "x": 1281,
-        "y": 0,
-        "w": 250,
-        "h": 250
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 250,
-        "h": 250
-      },
-      "sourceSize": {
-        "w": 250,
-        "h": 250
-      }
-    },
-    "arrow_down.png": {
-      "frame": {
-        "x": 985,
-        "y": 1442,
-        "w": 75,
-        "h": 75
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 75,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 75,
-        "h": 75
-      }
-    },
+  "frames": 
+  {
     "arrow_left.png": {
       "frame": {
-        "x": 832,
-        "y": 1442,
+        "x": 1281,
+        "y": 320,
         "w": 76,
         "h": 75
       },
@@ -62,8 +23,8 @@
     },
     "arrow_right.png": {
       "frame": {
-        "x": 909,
-        "y": 1442,
+        "x": 1281,
+        "y": 396,
         "w": 75,
         "h": 75
       },
@@ -80,127 +41,287 @@
         "h": 75
       }
     },
-    "arrow_up.png": {
+    "back.png": {
       "frame": {
-        "x": 754,
+        "x": 1038,
         "y": 1442,
-        "w": 77,
-        "h": 76
+        "w": 84,
+        "h": 36
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 77,
-        "h": 76
+        "w": 84,
+        "h": 36
       },
       "sourceSize": {
-        "w": 77,
-        "h": 76
+        "w": 84,
+        "h": 36
       }
     },
-    "batman.png": {
+    "basket_blue.png": {
       "frame": {
-        "x": 1061,
+        "x": 1281,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_green.png": {
+      "frame": {
+        "x": 1281,
+        "y": 256,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_normal.png": {
+      "frame": {
+        "x": 1281,
+        "y": 192,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_red.png": {
+      "frame": {
+        "x": 1281,
+        "y": 128,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_small.png": {
+      "frame": {
+        "x": 1038,
+        "y": 1479,
+        "w": 30,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 30,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 30,
+        "h": 23
+      }
+    },
+    "basket_yellow.png": {
+      "frame": {
+        "x": 1281,
+        "y": 64,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "chicken_left.png": {
+      "frame": {
+        "x": 1281,
+        "y": 472,
+        "w": 60,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 70
+      }
+    },
+    "chicken_right.png": {
+      "frame": {
+        "x": 1281,
+        "y": 543,
+        "w": 60,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 70
+      }
+    },
+    "egg_blue.png": {
+      "frame": {
+        "x": 1144,
         "y": 1442,
-        "w": 50,
-        "h": 75
+        "w": 20,
+        "h": 25
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 50,
-        "h": 75
+        "w": 20,
+        "h": 25
       },
       "sourceSize": {
-        "w": 50,
-        "h": 75
+        "w": 20,
+        "h": 25
       }
     },
-    "levelLocked.png": {
+    "egg_green.png": {
       "frame": {
-        "x": 1281,
-        "y": 1004,
-        "w": 250,
-        "h": 250
+        "x": 1186,
+        "y": 1442,
+        "w": 20,
+        "h": 25
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       },
       "sourceSize": {
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       }
     },
-    "levelUnlocked.png": {
+    "egg_normal.png": {
       "frame": {
-        "x": 1281,
-        "y": 753,
-        "w": 250,
-        "h": 250
+        "x": 1123,
+        "y": 1442,
+        "w": 20,
+        "h": 25
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       },
       "sourceSize": {
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       }
     },
-    "oneGift.png": {
+    "egg_red.png": {
       "frame": {
-        "x": 1281,
-        "y": 502,
-        "w": 250,
-        "h": 250
+        "x": 1207,
+        "y": 1442,
+        "w": 20,
+        "h": 25
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       },
       "sourceSize": {
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       }
     },
-    "threeGifts.png": {
+    "egg_yellow.png": {
       "frame": {
-        "x": 1281,
-        "y": 251,
-        "w": 250,
-        "h": 250
+        "x": 1165,
+        "y": 1442,
+        "w": 20,
+        "h": 25
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       },
       "sourceSize": {
-        "w": 250,
-        "h": 250
+        "w": 20,
+        "h": 25
       }
     },
-    "menuBackground_720.png": {
+    "grass.png": {
       "frame": {
         "x": 0,
         "y": 721,
@@ -220,227 +341,7 @@
         "h": 720
       }
     },
-    "playButton.png": {
-      "frame": {
-        "x": 352,
-        "y": 1442,
-        "w": 200,
-        "h": 89
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 200,
-        "h": 89
-      },
-      "sourceSize": {
-        "w": 200,
-        "h": 89
-      }
-    },
-    "settingsButton.png": {
-      "frame": {
-        "x": 151,
-        "y": 1442,
-        "w": 200,
-        "h": 89
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 200,
-        "h": 89
-      },
-      "sourceSize": {
-        "w": 200,
-        "h": 89
-      }
-    },
-    "shopButton.png": {
-      "frame": {
-        "x": 553,
-        "y": 1442,
-        "w": 200,
-        "h": 89
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 200,
-        "h": 89
-      },
-      "sourceSize": {
-        "w": 200,
-        "h": 89
-      }
-    },
-    "house.png": {
-      "frame": {
-        "x": 1281,
-        "y": 1255,
-        "w": 150,
-        "h": 137
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 150,
-        "h": 137
-      },
-      "sourceSize": {
-        "w": 150,
-        "h": 137
-      }
-    },
-    "backButtonSmall720.png": {
-      "frame": {
-        "x": 811,
-        "y": 1533,
-        "w": 79,
-        "h": 47
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 79,
-        "h": 47
-      },
-      "sourceSize": {
-        "w": 79,
-        "h": 47
-      }
-    },
-    "backButton720.png": {
-      "frame": {
-        "x": 0,
-        "y": 1442,
-        "w": 150,
-        "h": 90
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 150,
-        "h": 90
-      },
-      "sourceSize": {
-        "w": 150,
-        "h": 90
-      }
-    },
-    "title.png": {
-      "frame": {
-        "x": 0,
-        "y": 1533,
-        "w": 629,
-        "h": 73
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 629,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 629,
-        "h": 73
-      }
-    },
-    "bat.png": {
-      "frame": {
-        "x": 732,
-        "y": 1533,
-        "w": 78,
-        "h": 51
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 78,
-        "h": 51
-      },
-      "sourceSize": {
-        "w": 78,
-        "h": 51
-      }
-    },
-    "ghost.png": {
-      "frame": {
-        "x": 681,
-        "y": 1533,
-        "w": 50,
-        "h": 55
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 50,
-        "h": 55
-      },
-      "sourceSize": {
-        "w": 50,
-        "h": 55
-      }
-    },
-    "item01.png": {
-      "frame": {
-        "x": 891,
-        "y": 1533,
-        "w": 40,
-        "h": 41
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 40,
-        "h": 41
-      },
-      "sourceSize": {
-        "w": 40,
-        "h": 41
-      }
-    },
-    "santa.png": {
-      "frame": {
-        "x": 630,
-        "y": 1533,
-        "w": 50,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 50,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 50,
-        "h": 63
-      }
-    },
-    "snow_background720.png": {
+    "menu.png": {
       "frame": {
         "x": 0,
         "y": 0,
@@ -458,17 +359,86 @@
       "sourceSize": {
         "w": 1280,
         "h": 720
+      }
+    },
+    "options.png": {
+      "frame": {
+        "x": 647,
+        "y": 1442,
+        "w": 253,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 253,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 253,
+        "h": 82
+      }
+    },
+    "options_hover.png": {
+      "frame": {
+        "x": 0,
+        "y": 1442,
+        "w": 382,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 382,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 382,
+        "h": 82
+      }
+    },
+    "play.png": {
+      "frame": {
+        "x": 901,
+        "y": 1442,
+        "w": 136,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 136,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 82
+      }
+    },
+    "play_hover.png": {
+      "frame": {
+        "x": 383,
+        "y": 1442,
+        "w": 263,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 263,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 263,
+        "h": 82
       }
     }
-  },
-  "meta": {
-    "app": "https://www.leshylabs.com/apps/sstool/",
-    "version": "Leshy SpriteSheet Tool v0.8.4",
-    "image": "spritesheet.png",
-    "size": {
-      "w": 1531,
-      "h": 1606
-    },
-    "scale": 1
-  }
-}
+  },"meta":{"app":"https://www.leshylabs.com/apps/sstool/","version":"Leshy SpriteSheet Tool v0.8.4","image":"spritesheet.png","size":{"w":1361,"h":1524},"scale":1}}

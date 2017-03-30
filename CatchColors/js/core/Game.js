@@ -6,6 +6,8 @@
     this._keyboard = Keyboard;
     this._playerSpeed = 5;
     this._state = this.menu;
+    this._enemyActivity = 5;
+    this._enemy;
 }
 
 /**
@@ -62,8 +64,10 @@ Game.prototype.setLevel = function () {
     life.text = this._playerStartHealth;
 
     //set enemies
-    this._enemies = sceneRepo.getSceneByName(activeScene).getEnemies();
-    this.resetEnemies();
+    //this._enemies = sceneRepo.getSceneByName(activeScene).getEnemies();
+    this._enemy = sceneRepo.getSceneByName(activeScene).getSprite('enemy');
+    this._enemy.newX = this._enemy.x;
+    //this.resetEnemies();
 
     this.setState('play');
 };
@@ -119,10 +123,10 @@ Game.prototype.pause = function () {
 * Main game logic loop
 */
 Game.prototype.gameLoop = function () {
-    setTimeout(() => {
+    app.ticker.add(() => {
         this._state();
-        this.gameLoop();
-    }, 16);
+        //this.gameLoop();
+    });
 };
 
 /**
@@ -142,25 +146,64 @@ Game.prototype.movePlayer = function () {
 * Method moves enemies.
 */
 Game.prototype.moveEnemies = function () {
-    this._enemies.forEach(function (enemy) {
-        if ("reverse" === enemy.moveDirection) {
-            enemy.x -= enemy.vx;
-        } else {
-            enemy.x += enemy.vx;
-        }
+        console.log('movechicken');
 
-        let enemyHitsWall = Game.prototype.contain(enemy, {
+
+       
+            if (this._enemy.x == this._enemy.newX) {
+
+
+                this.move = Game.prototype.enemyNextMove();
+
+                this._enemy.vx = this.move.howFar;
+                this._enemy.newX += this._enemy.vx;
+
+                setTimeout(() => {
+
+                    this._enemy.x += this._enemy.vx;
+                
+
+                }, 16);
+
+                console.log('test');
+            }
+        
+        
+        
+        
+        
+        /*let enemyHitsWall = Game.prototype.contain(enemy, {
             x: enemy.width,
             y: enemy.height,
             width: 1280 - enemy.width,
-            height: 720 - enemy.height
+            height: 200 - enemy.height
         });
 
         if (true === enemyHitsWall) {
             enemy.vx *= -1;
-        }
-    });
+
+        }*/
 };
+
+/**
+* Method generates and returns enemy random next move
+* @returns {object}
+*/
+Game.prototype.enemyNextMove = function () {
+    return {
+        direction: Game.prototype.getRandom(5, 100),
+        howFar: Game.prototype.getRandom(0, 3)
+    };
+}
+
+
+/**
+* Method returns a random number between min and max value
+* @returns {number}
+*/
+Game.prototype.getRandom = function (min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
 
 /**

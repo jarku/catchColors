@@ -5,29 +5,29 @@
         "ui": [{
             'type': 'sprite',
             "name": 'background',
-            "asset": 'menuBackground_720.png',
+            "asset": 'menu.png',
             "x": 0,
             "y": 0,
             "visible": true
         }, {
             'type': 'sprite',
-            "name": 'title',
-            "asset": 'title.png',
-            "x": 100,
-            "y": 100,
-            "visible": true,
-            "interaction": false,
-            "displayView": ''
-        }, {
-            'type': 'sprite',
             "name": 'play',
-            "asset": 'playButton.png',
-            "x": 200,
-            "y": 400,
+            "asset": 'play.png',
+            "x": 400,
+            "y": 300,
             "visible": true,
             "interaction": true,
             "displayView": 'game',
             "action": 'startGame'
+        }, {
+            'type': 'sprite',
+            "name": 'options',
+            "asset": 'options.png',
+            "x": 400,
+            "y": 400,
+            "visible": true,
+            "interaction": true,
+            "displayView": 'settings'
         }, {
             'type': 'sprite',
             "name": 'settings',
@@ -45,7 +45,7 @@
         "ui": [{
             'type': 'sprite',
             "name": 'goBack',
-            "asset": 'backButtonSmall720.png',
+            "asset": 'back.png',
             "x": 10,
             "y": 10,
             "visible": true,
@@ -58,8 +58,16 @@
         "visibleOnStart": false,
         "ui": [{
             'type': 'sprite',
+            "name": 'background',
+            "asset": 'grass.png',
+            "x": 0,
+            "y": 0,
+            "visible": true,
+            "interaction": false
+        }, {
+            'type': 'sprite',
             "name": 'goBack',
-            "asset": 'backButtonSmall720.png',
+            "asset": 'back.png',
             "x": 10,
             "y": 10,
             "visible": true,
@@ -89,7 +97,7 @@
             "asset": 'arrow_left.png',
             "x": 10,
             "y": 635,
-            "visible": false,
+            "visible": true,
             "interaction": true,
             "mobileSupport": true
         }, {
@@ -98,7 +106,7 @@
             "asset": 'arrow_right.png',
             "x": 1195,
             "y": 635,
-            "visible": false,
+            "visible": true,
             "interaction": true,
             "mobileSupport": true
         }
@@ -106,22 +114,22 @@
         "characters": [{
             'type': 'sprite',
             "name": 'player',
-            "asset": 'santa.png',
+            "asset": 'basket_normal.png',
             "x": 500,
             "y": 600,
             "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
-            "asset": 'bat.png',
+            "asset": 'chicken_right.png',
             "color": 'red',
-            "y": 100,
+            "y": 50,
             "x": 100,
             "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
-            "asset": 'bat.png',
+            "asset": 'chicken_right.png',
             "color": 'red',
             "y": 100,
             "x": 900,
@@ -129,29 +137,27 @@
         }, {
             'type': 'sprite',
             "name": 'enemy',
-            "asset": 'bat.png',
+            "asset": 'chicken_right.png',
             "color": 'red',
-            "y": 100,
+            "y": 90,
             "x": 300,
             "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
-            "asset": 'ghost.png',
+            "asset": 'chicken_left.png',
             "color": 'blue',
-            "y": 100,
+            "y": 20,
             "x": 400,
-            "visible": true,
-            "moveDirection": "reverse"
+            "visible": true
         }, {
             'type': 'sprite',
             "name": 'enemy',
-            "asset": 'ghost.png',
+            "asset": 'chicken_left.png',
             "color": 'blue',
-            "y": 100,
+            "y": 150,
             "x": 800,
-            "visible": true,
-            "moveDirection": "reverse"
+            "visible": true
             }
         ],
     }

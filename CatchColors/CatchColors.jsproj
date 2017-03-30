@@ -58,31 +58,8 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="assets\arrow_down.png" />
-    <Content Include="assets\arrow_left.png" />
-    <Content Include="assets\arrow_right.png" />
-    <Content Include="assets\arrow_up.png" />
-    <Content Include="assets\backButton720.png" />
-    <Content Include="assets\backButtonSmall720.png" />
-    <Content Include="assets\bat.png" />
-    <Content Include="assets\batman.png" />
-    <Content Include="assets\ghost.png" />
-    <Content Include="assets\house.png" />
-    <Content Include="assets\item01.png" />
-    <Content Include="assets\levelLocked.png" />
-    <Content Include="assets\levelUnlocked.png" />
-    <Content Include="assets\menu_background720.png" />
-    <Content Include="assets\oneGift.png" />
-    <Content Include="assets\playButton.png" />
-    <Content Include="assets\santa.png" />
-    <Content Include="assets\settingsButton.png" />
-    <Content Include="assets\shopButton.png" />
-    <Content Include="assets\snow_background720.png" />
     <Content Include="assets\sprites.json" />
     <Content Include="assets\spritesheet.png" />
-    <Content Include="assets\threeGifts.png" />
-    <Content Include="assets\title.png" />
-    <Content Include="assets\twoGifts.png" />
     <Content Include="index.html" />
     <Content Include="images\LockScreenLogo.scale-200.png" />
     <Content Include="images\SplashScreen.scale-200.png" />

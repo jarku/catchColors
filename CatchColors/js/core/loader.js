@@ -1,5 +1,5 @@
 ﻿function Loader() {
-    this._sprites = resources["assets/sprites.json"].textures;
+    this._sprites = PIXI.loader.resources["assets/sprites.json"].textures;
 }
 
 /**
@@ -10,7 +10,7 @@ Loader.prototype.loadSprites = function () {
 
     for (let index = 0; index < viewsQuantity; index = index + 1) {
         let view = views[index],
-            viewContainer = new Container();
+            viewContainer = new PIXI.Container();
 
         viewContainer.name = view.viewName;
 
@@ -55,9 +55,9 @@ Loader.prototype.loadSprites = function () {
 Loader.prototype.addChildToContainer = function (element, viewContainer) {
     let child;
     if ('sprite' === element.type) {
-        child = new Sprite(this._sprites[element.asset]);
+        child = new PIXI.Sprite(this._sprites[element.asset]);
     } else if ('text' === element.type) {
-        child = new Text(
+        child = new PIXI.Text(
         element.txt,
             {
                 font: element.font,
