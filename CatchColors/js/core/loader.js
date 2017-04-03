@@ -1,6 +1,21 @@
 ﻿function Loader() {
-    this._sprites = PIXI.loader.resources["assets/sprites.json"].textures;
+    this._sprites;
 }
+
+ /**
+ * Method sets sprites from loader resources.
+ */
+ Loader.prototype.setSprites = function (path) {
+     this._sprites = PIXI.loader.resources[path].textures;
+ };
+
+/**
+* Method returns loaded sprites.
+* @returns {object}
+*/
+Loader.prototype.getSprites = function () {
+    return this._sprites;
+};
 
 /**
 * Method loads sprites.

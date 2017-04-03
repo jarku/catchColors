@@ -26,18 +26,19 @@ if (('ontouchstart' in window) ||
 }
 
 //load sprites
+let loader = new Loader();
 PIXI.loader.add("assets/sprites.json").load(() => {
-    var loader = new Loader();
+    loader.setSprites("assets/sprites.json");
     loader.loadSprites();
 });
 
 //initate player control
-var keyboard = new Keyboard();
+let keyboard = new Keyboard();
 window.addEventListener("keydown", keyboard.handleKeyDown.bind(keyboard), false);
 window.addEventListener("keyup", keyboard.handleKeyUp.bind(keyboard), false);
 
 //initiate game logic
-var game = new Game(keyboard);
+let game = new Game(keyboard, loader);
 
 //Start the game loop
 game.gameLoop();
