@@ -15,7 +15,15 @@ app.stage.addChild(stage);
 
 //Resize window
 window.onresize = function (event) {
-    stage.scale.x = stage.scale.y = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    console.log('app ' + app.screen.width, app.screen.height);
+    console.log('stage' + stage.width, stage.height);
+    console.log('app view ' + app.view.width, app.view.height);
+    stage.scale.x = Math.min(window.innerWidth / 1280);
+    stage.scale.y = Math.min(window.innerHeight / 720);
+
+    console.log('---------- app ' + app.screen.width, app.screen.height);
+    console.log('---------- stage' + stage.width, stage.height);
+    console.log('---------- app view ' + app.view.width, app.view.height);
 };
 
 //check if device uses touch screen
@@ -24,6 +32,7 @@ if (('ontouchstart' in window) ||
         (navigator.msMaxTouchPoints > 0)) {
     console.log('touch device');
     isTouchDevice = true;
+    var gamepad = new Gamepad();
 }
 
 //initate player control
@@ -39,7 +48,7 @@ PIXI.loader.add("assets/sprites.json").load(() => {
 });
 
 //initiate game logic
-let game = new Game(keyboard, loader);
+let game = new Game(keyboard, gamepad, loader);
 
 //Start the game loop
 game.gameLoop();

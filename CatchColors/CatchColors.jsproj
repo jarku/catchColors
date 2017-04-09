@@ -58,6 +58,11 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="assets\basket_blue.png" />
+    <Content Include="assets\basket_green.png" />
+    <Content Include="assets\basket_normal.png" />
+    <Content Include="assets\basket_red.png" />
+    <Content Include="assets\lost.png" />
     <Content Include="assets\sprites.json" />
     <Content Include="assets\spritesheet.png" />
     <Content Include="index.html" />
@@ -69,6 +74,7 @@
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
     <Content Include="js\config\views.js" />
+    <Content Include="js\core\Gamepad.js" />
     <Content Include="js\core\loader.js" />
     <Content Include="js\core\Keyboard.js" />
     <Content Include="js\core\Game.js" />

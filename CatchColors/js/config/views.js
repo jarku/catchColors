@@ -13,21 +13,12 @@
             'type': 'sprite',
             "name": 'play',
             "asset": 'play.png',
-            "x": 400,
-            "y": 300,
+            "x": 600,
+            "y": 400,
             "visible": true,
             "interaction": true,
             "displayView": 'game',
             "action": 'startGame'
-        }, {
-            'type': 'sprite',
-            "name": 'options',
-            "asset": 'options.png',
-            "x": 400,
-            "y": 400,
-            "visible": true,
-            "interaction": true,
-            "displayView": 'settings'
         }, {
             'type': 'sprite',
             "name": 'settings',
@@ -79,7 +70,7 @@
             "txt": 'Lifes: ',
             "font": "20px Futura",
             "fill": "white",
-            "x": 1200,
+            "x": 1150,
             "y": 10,
             "visible": true
         }, {
@@ -88,8 +79,26 @@
             "txt": '0',
             "font": "20px Futura",
             "fill": "white",
-            "x": 1260,
+            "x": 1210,
             "y": 10,
+            "visible": true
+        }, {
+            'type': 'text',
+            "name": 'scoreText',
+            "txt": 'Score: ',
+            "font": "20px Futura",
+            "fill": "white",
+            "x": 1150,
+            "y": 30,
+            "visible": true
+        }, {
+            'type': 'text',
+            "name": 'scoreCounter',
+            "txt": '0',
+            "font": "20px Futura",
+            "fill": "white",
+            "x": 1210,
+            "y": 30,
             "visible": true
         }, {
             'type': 'sprite',

@@ -32,7 +32,7 @@ Scene.prototype.getSprite = function (spriteName) {
         }
     }
 
-    return {};
+    return undefined;
 };
 
 /**

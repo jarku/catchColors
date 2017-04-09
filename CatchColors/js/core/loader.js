@@ -83,6 +83,9 @@ Loader.prototype.addChildToContainer = function (element, viewContainer) {
 
     child.name = element.name;
     child.visible = element.visible;
+    if (isTouchDevice === true && (element.name === 'rigthArrow' || Element.name === 'rigthArrow')) {
+        child.visible = true;
+    }
 
     if (element.x || element.x === 0) {
         child.x = element.x;

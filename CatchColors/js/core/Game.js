@@ -1,9 +1,10 @@
-﻿function Game(Keyboard, Loader) {
+﻿function Game(Keyboard, Gamepad, Loader) {
     this._player;
     this._playerStartHealth = '3';
     this._enemies = [];
     this._enemySpeed = 3;
     this._keyboard = Keyboard;
+    this._gamepad = Gamepad;
     this._loader = Loader;
     this._sprites;
     this._playerSpeed = 5;
@@ -12,6 +13,8 @@
     this._enemy;
     this._gameStage;
     this._eggs = [];
+    this._score = 0;
+    this._life = 3;
 
     this.setGameStage();
 }
@@ -89,6 +92,18 @@ Game.prototype = {
             this.setState('play');
         },200);
     
+        //set score
+        this.setLife(3);
+        this.setScore(0);
+
+        if (true === isTouchDevice) {
+            this._gamepad.setGamepadKeys(this._gameStage);
+        }
+
+        let lost = this._gameStage.getSprite('lost');
+        if (lost) {
+            lost.parent.removeChild(lost);
+        }
     },
 
     /**
@@ -119,7 +134,7 @@ Game.prototype = {
             color = this.generateColor();
         this._player = new PIXI.Sprite(sprites['basket_' + color + '.png']);
         this._player.color = color;
-        this._player.y = 600;
+        this._player.y = 580;
         this._player.x = GAME_WIDTH / 2 - this._player.width / 2;
         this._player.vx = 0;
         this._player.name = 'player';
@@ -176,12 +191,18 @@ Game.prototype = {
     * @param {number} game delta
     */
     movePlayer : function (delta) {
-        if (this._keyboard.getKeysState().ARROW_LEFT) {
-            this._player.x -= this._playerSpeed;
+        if (this._keyboard.getKeysState().ARROW_LEFT || this._gamepad.getGamepadState().ARROW_LEFT) {
+            this._player.x -= this._playerSpeed * delta;
         }
-        if (this._keyboard.getKeysState().ARROW_RIGHT) {
-            this._player.x += this._playerSpeed;
+        if (this._keyboard.getKeysState().ARROW_RIGHT || this._gamepad.getGamepadState().ARROW_RIGHT) {
+            this._player.x += this._playerSpeed * delta;
         }
+        this.contain(this._player, {
+            x: 40,
+            y: 40,
+            width: 1280 - 40,
+            height: 720 - 40
+        });
     },
 
     /**
@@ -189,7 +210,7 @@ Game.prototype = {
     * @param {object} game stage
     * @param {number} game delta
     */
-    enemyAction: function (gameStage, delta) {
+    enemyAction : function (gameStage, delta) {
         let enemyQuantity = this._enemies.length;
         for (let index = 0; index < enemyQuantity; index += 1 ) {
             this.moveEnemy(this._enemies[index], delta);
@@ -202,14 +223,15 @@ Game.prototype = {
     * @param {object} enemy
     * @param {object} game stage
     */
-    enemySpawnEgg: function (enemy, gameStage) { //need to refactor !!!
+    enemySpawnEgg : function (enemy, gameStage) { //need to refactor !!!
         if (true === enemy.canShoot) {
             let spawnChance = this.getRandom(0, 100);
             if (50 > spawnChance) {
                 enemy.canShoot = false;
-                enemy.color = this.generateColor();
-                let sprites = loader.getSprites();
-                let egg = new PIXI.Sprite(sprites['egg_'+enemy.color+'.png']);
+                let color = this.generateColor(),
+                    sprites = loader.getSprites(),
+                    egg = new PIXI.Sprite(sprites['egg_' + color + '.png']);
+                egg.color = color;
                 egg.position.x = enemy.x;
                 egg.position.y = enemy.y;
                 egg.visibile = true;
@@ -228,7 +250,7 @@ Game.prototype = {
     * Method generates random egg color.
     * @returns {string}
     */
-    generateColor: function () {
+    generateColor : function () {
         let value = this.getRandom(0, 3);
         switch (value) {
             case 0:
@@ -249,12 +271,11 @@ Game.prototype = {
     * @param {object} game stage
     * @param {number} game delta
     */
-    moveEgg: function (gameStage, delta) {
+    moveEgg : function (gameStage, delta) {
         this._eggs.forEach((egg) => {
             egg.y += 1 * delta;
+            this.collisionWithPlayer(egg);
             if (egg.y >= GAME_HEIGHT - 100 && egg.visibile === true) {
-                console.log('removeEGG ' + egg.name + 'eggs quantity ' + this._eggs.length);
-                egg.visibile = false;
                 this.removeEgg(egg);
             }
         });
@@ -264,12 +285,12 @@ Game.prototype = {
     * Method removes egg.
     * @param {object} single egg
     */
-    removeEgg: function (egg) {
+    removeEgg : function (egg) {
+        egg.visibile = false;
         egg.parent.removeChild(egg);
         var index = this._eggs.indexOf(egg);
         if (index > -1) {
             this._eggs.splice(index, 1);
-            console.log('egg deleted');
         }
     },
 
@@ -329,6 +350,61 @@ Game.prototype = {
     },
 
     /**
+    * Method sets score, deletes egg on collision with basket.
+    */
+    collisionWithPlayer : function (egg) {
+        if (true === this.collision(this._player, egg)) {
+            console.log('collision');
+
+            //set score or life
+            if (egg.color === this._player.color) {
+                this.setScore(this._score += 100);
+            } else {
+                this.setLife(this._life -= 1);
+                if (this._life === 0) {
+                    this.setState('pause');
+                    console.log('app.screen.width' + app.screen.width + ' ' + 'app.screen.x' + app.screen.x + ' ' + 'app.screen.y' + app.screen.y + ' ');
+                    console.log('stage.width' + stage.width + ' ' + 'stage.x ' + stage.x + ' ' + 'stage.y ' + stage.y + ' ');
+                    let lost = PIXI.Sprite.fromImage('../assets/lost.png');
+                    lost.x = window.innerWidth / 2 - lost.width / 2;
+                    lost.y = window.innerHeight / 2 - lost.height / 2;
+                    lost.name = 'lost';
+                    this._gameStage._sceneContainer.addChild(lost);
+                }
+            }
+
+            //remove touched egg
+            this.removeEgg(egg);
+
+            //change basket color
+            let colorChangeChance = this.getRandom(0, 100);
+            if (50 > colorChangeChance) {
+                let color = this.generateColor();
+                this._player.color = color;
+                this._player.texture = PIXI.Texture.fromImage('../assets/basket_' + color + '.png');
+            }
+        }
+    },
+
+    /**
+    * Method sets score
+    */
+    setScore : function (score) {
+        let scoreText = this._gameStage.getSprite('scoreCounter');
+        scoreText.text = score;
+        this._score = score;
+    },
+
+    /**
+    * Method sets player life
+    */
+    setLife : function (life) {
+        let lifeText = this._gameStage.getSprite('lifeCounter');
+        lifeText.text = life;
+        this._life = life;
+    },
+
+    /**
     * Method returns a random number between min and max value
     * @param {number} min value
     * @param {number} max value
@@ -361,4 +437,48 @@ Game.prototype = {
 
         return contain;
     },
+
+    //check for collision with object
+    collision : function (object1, object2) {
+        var collision = false;
+        if (object2.visible == true) {
+            var combinedHalfWidths,
+                combinedHalfHeights,
+                vx,
+                vy;
+
+            //center points
+            object1.centerX = object1.x + object1.width / 2;
+            object1.centerY = object1.y + object1.height / 2;
+            object2.centerX = object2.x + object2.width / 2;
+            object2.centerY = object2.y + object2.height / 2;
+
+            //distance vector between the sprites
+            vx = object1.centerX - object2.centerX;
+            vy = object1.centerY - object2.centerY;
+
+            //half-widths, half-heights of each sprite
+            object1.halfWidth = object1.width / 2;
+            object1.halfHeight = object1.height / 2;
+            object2.halfWidth = object2.width / 2;
+            object2.halfHeight = object2.height / 2;
+
+            combinedHalfWidths = object1.halfWidth + object2.halfWidth;
+            combinedHalfHeights = object1.halfHeight + object2.halfHeight;
+
+            //collision on x
+            if (Math.abs(vx) < combinedHalfWidths) {
+                //collision on y
+                if (Math.abs(vy) < combinedHalfHeights) {
+                    collision = true;
+                } else {
+                    collision = false;
+                }
+            } else {
+                collision = false;
+            }
+        }
+
+        return collision;
+    }
 }
