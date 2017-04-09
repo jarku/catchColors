@@ -15,15 +15,8 @@ app.stage.addChild(stage);
 
 //Resize window
 window.onresize = function (event) {
-    console.log('app ' + app.screen.width, app.screen.height);
-    console.log('stage' + stage.width, stage.height);
-    console.log('app view ' + app.view.width, app.view.height);
     stage.scale.x = Math.min(window.innerWidth / 1280);
     stage.scale.y = Math.min(window.innerHeight / 720);
-
-    console.log('---------- app ' + app.screen.width, app.screen.height);
-    console.log('---------- stage' + stage.width, stage.height);
-    console.log('---------- app view ' + app.view.width, app.view.height);
 };
 
 //check if device uses touch screen

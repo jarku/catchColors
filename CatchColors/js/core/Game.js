@@ -157,7 +157,6 @@ Game.prototype = {
     * @param {number} game delta
     */
     play: function (delta) {
-        //console.log('play' + delta);
         this.movePlayer(delta);
         this.enemyAction(this._gameStage, delta);
         this.moveEgg(this._gameStage, delta);
@@ -180,7 +179,6 @@ Game.prototype = {
     */
     gameLoop : function () {
         app.ticker.add((delta) => {
-            //console.log('ticker ' + this._state);
             this._state(delta);
         });
     },
@@ -301,18 +299,13 @@ Game.prototype = {
     moveEnemy : function (enemy) {
         if (enemy.x < enemy.newX) {
             enemy.x += 1;
-            //console.log('right ' + enemy.x, enemy.newX);
         } else if (enemy.x > enemy.newX) {
             enemy.x -= 1;
-            //console.log('left ' + enemy.x, enemy.newX);
         } else if (enemy.y > enemy.newY) {
             enemy.y -= 1;
-            //console.log('top ' + enemy.y, enemy.newY);
         } else if (enemy.y < enemy.newY) {
             enemy.y += 1;
-            //console.log('down ' + enemy.y, enemy.newY);
         } else {
-            //console.log('switch move');
             this.move = this.enemyNextMove(enemy.x, enemy.y);
             enemy.newX = this.move.newX;
             enemy.newY = this.move.newY;
@@ -354,8 +347,6 @@ Game.prototype = {
     */
     collisionWithPlayer : function (egg) {
         if (true === this.collision(this._player, egg)) {
-            console.log('collision');
-
             //set score or life
             if (egg.color === this._player.color) {
                 this.setScore(this._score += 100);
@@ -363,8 +354,6 @@ Game.prototype = {
                 this.setLife(this._life -= 1);
                 if (this._life === 0) {
                     this.setState('pause');
-                    console.log('app.screen.width' + app.screen.width + ' ' + 'app.screen.x' + app.screen.x + ' ' + 'app.screen.y' + app.screen.y + ' ');
-                    console.log('stage.width' + stage.width + ' ' + 'stage.x ' + stage.x + ' ' + 'stage.y ' + stage.y + ' ');
                     let lost = PIXI.Sprite.fromImage('../assets/lost.png');
                     lost.x = window.innerWidth / 2 - lost.width / 2;
                     lost.y = window.innerHeight / 2 - lost.height / 2;
