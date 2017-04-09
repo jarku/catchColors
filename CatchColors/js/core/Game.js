@@ -98,6 +98,9 @@ Game.prototype = {
 
         if (true === isTouchDevice) {
             this._gamepad.setGamepadKeys(this._gameStage);
+            this.movePlayer = this.movePlayerByGamepad;
+        } else {
+            this.movePlayer = this.movePlayerByKeyboard;
         }
 
         let lost = this._gameStage.getSprite('lost');
@@ -158,6 +161,14 @@ Game.prototype = {
     */
     play: function (delta) {
         this.movePlayer(delta);
+
+        this.contain(this._player, {
+            x: 40,
+            y: 40,
+            width: 1280 - 40,
+            height: 720 - 40
+        });
+
         this.enemyAction(this._gameStage, delta);
         this.moveEgg(this._gameStage, delta);
     },
@@ -184,23 +195,31 @@ Game.prototype = {
     },
 
     /**
-    * Method check's if key was pushed .
+    * Method check's if keybaord key was pushed .
     * and moves player sprite
     * @param {number} game delta
     */
-    movePlayer : function (delta) {
-        if (this._keyboard.getKeysState().ARROW_LEFT || this._gamepad.getGamepadState().ARROW_LEFT) {
+    movePlayerByGamepad : function (delta) {
+        if (this._gamepad.getGamepadState().ARROW_LEFT) {
             this._player.x -= this._playerSpeed * delta;
         }
-        if (this._keyboard.getKeysState().ARROW_RIGHT || this._gamepad.getGamepadState().ARROW_RIGHT) {
+        if (this._gamepad.getGamepadState().ARROW_RIGHT) {
             this._player.x += this._playerSpeed * delta;
         }
-        this.contain(this._player, {
-            x: 40,
-            y: 40,
-            width: 1280 - 40,
-            height: 720 - 40
-        });
+    },
+
+    /**
+    * Method check's if gamepad key was pushed .
+    * and moves player sprite
+    * @param {number} game delta
+    */
+    movePlayerByKeyboard: function (delta) {
+        if (this._keyboard.getKeysState().ARROW_LEFT) {
+            this._player.x -= this._playerSpeed * delta;
+        }
+        if (this._keyboard.getKeysState().ARROW_RIGHT) {
+            this._player.x += this._playerSpeed * delta;
+        }
     },
 
     /**
