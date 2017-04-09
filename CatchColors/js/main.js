@@ -7,7 +7,6 @@ const GAME_WIDTH = 1280,
 document.body.appendChild(app.view);
 
 let sceneRepo = new sceneRepository(),
-      VALUE = 0,
     isTouchDevice = false,
     stage = new PIXI.Container();
 
