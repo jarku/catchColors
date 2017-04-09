@@ -7,6 +7,7 @@ const GAME_WIDTH = 1280,
 document.body.appendChild(app.view);
 
 let sceneRepo = new sceneRepository(),
+      VALUE = 0,
     isTouchDevice = false,
     stage = new PIXI.Container();
 
@@ -25,17 +26,17 @@ if (('ontouchstart' in window) ||
     isTouchDevice = true;
 }
 
+//initate player control
+let keyboard = new Keyboard();
+window.addEventListener("keydown", keyboard.handleKeyDown.bind(keyboard), false);
+window.addEventListener("keyup", keyboard.handleKeyUp.bind(keyboard), false);
+
 //load sprites
 let loader = new Loader();
 PIXI.loader.add("assets/sprites.json").load(() => {
     loader.setSprites("assets/sprites.json");
     loader.loadSprites();
 });
-
-//initate player control
-let keyboard = new Keyboard();
-window.addEventListener("keydown", keyboard.handleKeyDown.bind(keyboard), false);
-window.addEventListener("keyup", keyboard.handleKeyUp.bind(keyboard), false);
 
 //initiate game logic
 let game = new Game(keyboard, loader);

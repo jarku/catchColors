@@ -5,11 +5,15 @@
     this._enemySpeed = 3;
     this._keyboard = Keyboard;
     this._loader = Loader;
+    this._sprites;
     this._playerSpeed = 5;
     this._state = this.menu;
     this._enemyActivity = 5;
     this._enemy;
     this._gameStage;
+    this._eggs = [];
+
+    this.setGameStage();
 }
 
 Game.prototype = {
@@ -47,6 +51,7 @@ Game.prototype = {
 
     /**
     * Method sets game state.
+    * @param {string} state to change to
     */
     setState : function (state) {
         if (state === 'play') {
@@ -67,7 +72,6 @@ Game.prototype = {
         this.setGameStage();
 
         //set player
-        this._player = this._gameStage.getSprite('player');
         this.resetPlayer();
 
         //set displayed health
@@ -77,6 +81,9 @@ Game.prototype = {
         //set enemies
         this._enemies = this._gameStage.getEnemies();
         this.resetEnemies();
+
+        //set eggs
+        this.resetEggs();
     
         setTimeout(() => {
             this.setState('play');
@@ -102,49 +109,73 @@ Game.prototype = {
     },
 
     /**
-    * Method resets player sprite position and velocity.
+    * Method resets player sprite position, velocity, color.
     */
-    resetPlayer : function () {
-        this._player.x = 600;
+    resetPlayer: function () {
+        if (this._gameStage.getSprite('player')) {
+            this._gameStage._sceneContainer.removeChild(this._player);
+        }
+        let sprites = this._loader.getSprites(),
+            color = this.generateColor();
+        this._player = new PIXI.Sprite(sprites['basket_' + color + '.png']);
+        this._player.color = color;
+        this._player.y = 600;
+        this._player.x = GAME_WIDTH / 2 - this._player.width / 2;
         this._player.vx = 0;
+        this._player.name = 'player';
+        this._gameStage._sceneContainer.addChild(this._player);
+    },
+
+    /**
+    * Method deletes eggs sprites.
+    */
+    resetEggs: function () {
+        let eggsQuantity = this._eggs.length;
+        for (let index = 0; index < eggsQuantity; index++) {
+            this._eggs[index].parent.removeChild(this._eggs[index]);
+        }
+        this._eggs = [];
     },
 
     /**
     * Game state play.
+    * @param {number} game delta
     */
-    play : function () {
-        this.movePlayer();
-        this.enemyAction(this._gameStage);
+    play: function (delta) {
+        //console.log('play' + delta);
+        this.movePlayer(delta);
+        this.enemyAction(this._gameStage, delta);
+        this.moveEgg(this._gameStage, delta);
     },
 
     /**
     * Game state menu.
     */
     menu : function () {
-
     },
 
     /**
     * Game state pause.
     */
     pause : function () {
-
     },
 
     /**
     * Main game logic loop
     */
     gameLoop : function () {
-        app.ticker.add(() => {
-            this._state();
+        app.ticker.add((delta) => {
+            //console.log('ticker ' + this._state);
+            this._state(delta);
         });
     },
 
     /**
     * Method check's if key was pushed .
     * and moves player sprite
+    * @param {number} game delta
     */
-    movePlayer : function () {
+    movePlayer : function (delta) {
         if (this._keyboard.getKeysState().ARROW_LEFT) {
             this._player.x -= this._playerSpeed;
         }
@@ -155,45 +186,96 @@ Game.prototype = {
 
     /**
     * Method moves enemies and let them shot.
+    * @param {object} game stage
+    * @param {number} game delta
     */
-    enemyAction: function (gameStage) {
+    enemyAction: function (gameStage, delta) {
         let enemyQuantity = this._enemies.length;
         for (let index = 0; index < enemyQuantity; index += 1 ) {
-            this.moveEnemy(this._enemies[index]);
-            this.enemyShot(this._enemies[index], gameStage);
+            this.moveEnemy(this._enemies[index], delta);
+            this.enemySpawnEgg(this._enemies[index], gameStage);
         }
     },
 
     /**
-    * Method shots objects from enemy.
+    * Method spawns objects on enemy position.
+    * @param {object} enemy
+    * @param {object} game stage
     */
-    enemyShot : function (enemy, gameStage) {
+    enemySpawnEgg: function (enemy, gameStage) { //need to refactor !!!
         if (true === enemy.canShoot) {
-            let test = this.getRandom(0, 100);
-            console.log(test)
-            if (50 > test) {
+            let spawnChance = this.getRandom(0, 100);
+            if (50 > spawnChance) {
                 enemy.canShoot = false;
-
-                console.log('add bullet');
-                let test = this._loader.getSprites();
-                console.log(test);
-                var bullet = new PIXI.Sprite(test['egg_normal.png']);
-                bullet.position.x = enemy.x;
-                bullet.position.y = enemy.y;
-                bullet.visibile = true;
-                gameStage._sceneContainer.addChild(bullet);
-                //bullet.position.x += Math.cos(0) * 1;
-                //bullet.position.y += Math.sin(0) * 1;
+                enemy.color = this.generateColor();
+                let sprites = loader.getSprites();
+                let egg = new PIXI.Sprite(sprites['egg_'+enemy.color+'.png']);
+                egg.position.x = enemy.x;
+                egg.position.y = enemy.y;
+                egg.visibile = true;
+                egg.name = 'egg ' + VALUE++;
+                this._eggs.push(egg);
+                gameStage._sceneContainer.addChild(egg);
 
                 setTimeout(() => {
                     enemy.canShoot = true;
-                }, 5000);
+                }, this.getRandom(2, 7) *1000);
             }
         }
     },
 
     /**
+    * Method generates random egg color.
+    * @returns {string}
+    */
+    generateColor: function () {
+        let value = this.getRandom(0, 3);
+        switch (value) {
+            case 0:
+                return "blue";
+            case 1:
+                return "green";
+            case 2:
+                return "red";
+            case 3:
+                return "yellow";
+            default:
+                return "normal";
+        }
+    },
+
+    /**
+    * Method moves eggs.
+    * @param {object} game stage
+    * @param {number} game delta
+    */
+    moveEgg: function (gameStage, delta) {
+        this._eggs.forEach((egg) => {
+            egg.y += 1 * delta;
+            if (egg.y >= GAME_HEIGHT - 100 && egg.visibile === true) {
+                console.log('removeEGG ' + egg.name + 'eggs quantity ' + this._eggs.length);
+                egg.visibile = false;
+                this.removeEgg(egg);
+            }
+        });
+    },
+
+    /**
+    * Method removes egg.
+    * @param {object} single egg
+    */
+    removeEgg: function (egg) {
+        egg.parent.removeChild(egg);
+        var index = this._eggs.indexOf(egg);
+        if (index > -1) {
+            this._eggs.splice(index, 1);
+            console.log('egg deleted');
+        }
+    },
+
+    /**
     * Method moves enemy.
+    * @param {object} single enemy
     */
     moveEnemy : function (enemy) {
         if (enemy.x < enemy.newX) {
@@ -218,6 +300,8 @@ Game.prototype = {
 
     /**
     * Method returns enemy random next move as x,y on screen
+    * @param {number} enemy position x
+    * @param {number} enemy position y
     * @returns {object}
     */
     enemyNextMove : function (x, y) {
@@ -246,6 +330,8 @@ Game.prototype = {
 
     /**
     * Method returns a random number between min and max value
+    * @param {number} min value
+    * @param {number} max value
     * @returns {number}
     */
     getRandom : function (min, max) {
@@ -274,5 +360,5 @@ Game.prototype = {
         }
 
         return contain;
-    }
+    },
 }

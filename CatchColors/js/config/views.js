@@ -111,14 +111,8 @@
             "mobileSupport": true
         }
         ],
-        "characters": [{
-            'type': 'sprite',
-            "name": 'player',
-            "asset": 'basket_normal.png',
-            "x": 500,
-            "y": 600,
-            "visible": true
-        }, {
+        "characters": [
+            {
             'type': 'sprite',
             "name": 'enemy',
             "asset": 'chicken_right.png',

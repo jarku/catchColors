@@ -105,29 +105,26 @@ Loader.prototype.addChildToContainer = function (element, viewContainer) {
     if (true === element.interaction) {
         child.interactive = true;
 
-        if (element.action) {
+        if (element.displayView) {
             child.displayView = element.displayView;
-            if ("startGame" === element.action) {
-                var clickAction = function () {
+            let clickAction;
+            if(element.action === 'startGame') {
+                clickAction = function () {
                     this.parent.visible = false;
                     sceneRepo.setActiveScene(this.displayView);
                     sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
                     game.setLevel();
                 };
+            } else {
+                clickAction = function () {
+                    this.parent.visible = false;
+                    sceneRepo.setActiveScene(this.displayView);
+                    sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
+                };
             }
-
             child.click = clickAction;
             child.touchstart = clickAction;
-        } else if (element.displayView) {
-            child.displayView = element.displayView;
-            let clickAction = function () {
-                this.parent.visible = false;
-                sceneRepo.setActiveScene(this.displayView);
-                sceneRepo.getSceneByName(this.displayView).getSceneContainer().visible = true;
-            };
-            child.click = clickAction;
-            child.touchstart = clickAction;
-        }
+        }    
     }
 
     viewContainer.addChild(child);
