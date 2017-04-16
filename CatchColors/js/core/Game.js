@@ -15,11 +15,32 @@
     this._eggs = [];
     this._score = 0;
     this._life = 3;
-
-    this.setGameStage();
+    this._filters = [];
+    this._chickenSprites = {};
+    this.setGame();
 }
 
 Game.prototype = {
+    
+    /**
+    * Game constructor.
+    */
+    setGame : function () {
+        let blur = new PIXI.filters.BlurFilter(),
+            matrix = new PIXI.filters.ColorMatrixFilter();
+
+        this._filters.blur = blur;
+        this._filters.matrix = matrix;
+
+        this.setGameStage();
+
+        this._chickenSprites = {
+            left: PIXI.Texture.fromImage('../assets/chicken_left.png'),
+            right: PIXI.Texture.fromImage('../assets/chicken_right.png'),
+            up: PIXI.Texture.fromImage('../assets/chicken_up.png'),
+            down: PIXI.Texture.fromImage('../assets/chicken_down.png')
+        };
+    },
 
     /**
     * Method returns state of game.
@@ -96,16 +117,14 @@ Game.prototype = {
         this.setLife(3);
         this.setScore(0);
 
+        let lost = this._gameStage.getSprite('lost');
+        lost.visible = false;
+
         if (true === isTouchDevice) {
             this._gamepad.setGamepadKeys(this._gameStage);
             this.movePlayer = this.movePlayerByGamepad;
         } else {
             this.movePlayer = this.movePlayerByKeyboard;
-        }
-
-        let lost = this._gameStage.getSprite('lost');
-        if (lost) {
-            lost.parent.removeChild(lost);
         }
     },
 
@@ -120,8 +139,9 @@ Game.prototype = {
             enemy = this._enemies[index];
             enemy.x = this.getRandom(40, 1240);
             enemy.y = this.getRandom(40, 300);
-            enemy.newX = this.getRandom(40, 1240);
-            enemy.newY = this.getRandom(40, 300);
+
+            this.move = this.enemyNextMove(enemy);
+
             enemy.canShoot = true;
         }
     },
@@ -142,6 +162,10 @@ Game.prototype = {
         this._player.vx = 0;
         this._player.name = 'player';
         this._gameStage._sceneContainer.addChild(this._player);
+        this._player.hit = false;
+
+        this._player.filters = [this._filters.blur];
+        this._player.filters.blur = this._blurCount = 0;
     },
 
     /**
@@ -160,7 +184,7 @@ Game.prototype = {
     * @param {number} game delta
     */
     play: function (delta) {
-        this.movePlayer(delta);
+        this.playerAction(this._gameStage, delta);
 
         this.contain(this._player, {
             x: 40,
@@ -223,6 +247,30 @@ Game.prototype = {
     },
 
     /**
+    * Method control player actions.
+    * @param {object} game stage
+    * @param {number} game delta
+    */
+    playerAction: function (gameStage, delta) {
+        this.movePlayer(delta);
+
+        this.playerBlink();
+    },
+
+    /**
+    * Method blinks player sprite while hit
+    */
+    playerBlink: function () {
+        if (this._player.hit === true) {
+            var blurAmount = Math.cos(this._blurCount += 0.1);
+
+            this._player.filters[0].blur = 20 * (blurAmount);
+        } else {
+            this._player.filters[0].blur = 0;
+        }
+    },
+
+    /**
     * Method moves enemies and let them shot.
     * @param {object} game stage
     * @param {number} game delta
@@ -252,7 +300,6 @@ Game.prototype = {
                 egg.position.x = enemy.x;
                 egg.position.y = enemy.y;
                 egg.visibile = true;
-                egg.name = 'egg ' + VALUE++;
                 this._eggs.push(egg);
                 gameStage._sceneContainer.addChild(egg);
 
@@ -315,7 +362,7 @@ Game.prototype = {
     * Method moves enemy.
     * @param {object} single enemy
     */
-    moveEnemy : function (enemy) {
+    moveEnemy: function (enemy) {
         if (enemy.x < enemy.newX) {
             enemy.x += 1;
         } else if (enemy.x > enemy.newX) {
@@ -325,9 +372,7 @@ Game.prototype = {
         } else if (enemy.y < enemy.newY) {
             enemy.y += 1;
         } else {
-            this.move = this.enemyNextMove(enemy.x, enemy.y);
-            enemy.newX = this.move.newX;
-            enemy.newY = this.move.newY;
+            this.enemyNextMove(enemy);
         }
     },
 
@@ -337,28 +382,28 @@ Game.prototype = {
     * @param {number} enemy position y
     * @returns {object}
     */
-    enemyNextMove : function (x, y) {
-        const moveDirection = this.getRandom(0, 3),
+    enemyNextMove : function (enemy) {
+        const moveDirection = this.getRandom(0, 4),
             howFar = this.getRandom(20, 60);
         let newX = 0, newY = 0;
 
         if (0 === moveDirection) { //left
-            newX = this.getRandom(40, 1240);
-            newY = y;
+            enemy.newX = this.getRandom(40, enemy.x);
+            enemy.newY = enemy.y;
+            enemy.texture = this._chickenSprites.left;
         } else if (1 === moveDirection) { //right
-            newX = this.getRandom(40, 1240);
-            newY = y;
-        } else if (2 === moveDirection) { //top
-            newX = x;
-            newY = this.getRandom(40, 300);
+            enemy.newX = this.getRandom(enemy.x, 1240);
+            enemy.newY = enemy.y;
+            enemy.texture = this._chickenSprites.right;
+        } else if (2 === moveDirection) { //up
+            enemy.newX = enemy.x;
+            enemy.newY = this.getRandom(40, enemy.y);
+            enemy.texture = this._chickenSprites.up;
         } else if (3 === moveDirection) { //down
-            newX = x;
-            newY = this.getRandom(40, 300);
+            enemy.newX = enemy.x;
+            enemy.newY = this.getRandom(enemy.y, 300);
+            enemy.texture = this._chickenSprites.down;
         }
-
-        return {
-            newX, newY
-        };
     },
 
     /**
@@ -373,11 +418,14 @@ Game.prototype = {
                 this.setLife(this._life -= 1);
                 if (this._life === 0) {
                     this.setState('pause');
-                    let lost = PIXI.Sprite.fromImage('../assets/lost.png');
-                    lost.x = window.innerWidth / 2 - lost.width / 2;
-                    lost.y = window.innerHeight / 2 - lost.height / 2;
-                    lost.name = 'lost';
-                    this._gameStage._sceneContainer.addChild(lost);
+                    let lost = this._gameStage.getSprite('lost');
+                    lost.visible = true;
+                } else {
+                    this._player.hit = true;
+                    setTimeout(() => {
+                        this._player.hit = false;
+                        this._blurCount = 0;
+                    }, 1000);
                 }
             }
 

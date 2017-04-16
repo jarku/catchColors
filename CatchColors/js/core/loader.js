@@ -87,19 +87,25 @@ Loader.prototype.addChildToContainer = function (element, viewContainer) {
         child.visible = true;
     }
 
-    if (element.x || element.x === 0) {
-        child.x = element.x;
-        child.startPositionX = element.x;
-    } else {
-        child.x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
-    }
+    if ('center' !== element.position) {
+        if (element.x || element.x === 0) {
+            child.x = element.x;
+            child.startPositionX = element.x;
+        } else {
+            child.x = GAME_WIDTH - Math.floor((Math.random() * GAME_WIDTH) + 1);
+        }
 
-    if (element.y || element.y === 0) {
-        child.y = element.y;
-        child.startPositionY = element.y;
+        if (element.y || element.y === 0) {
+            child.y = element.y;
+            child.startPositionY = element.y;
+        } else {
+            child.y = GAME_HEIGHT - Math.floor((Math.random() * GAME_HEIGHT) + 1);
+        }
     } else {
-        child.y = GAME_HEIGHT - Math.floor((Math.random() * GAME_HEIGHT) + 1);
+        child.x = GAME_WIDTH / 2 - child.width / 2;
+        child.y = GAME_HEIGHT / 2 - child.height / 2;
     }
+    
 
     if (element.moveDirection) {
         child.moveDirection = element.moveDirection;

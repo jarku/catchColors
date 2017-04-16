@@ -62,6 +62,10 @@
     <Content Include="assets\basket_green.png" />
     <Content Include="assets\basket_normal.png" />
     <Content Include="assets\basket_red.png" />
+    <Content Include="assets\chicken_down.png" />
+    <Content Include="assets\chicken_left.png" />
+    <Content Include="assets\chicken_right.png" />
+    <Content Include="assets\chicken_up.png" />
     <Content Include="assets\lost.png" />
     <Content Include="assets\sprites.json" />
     <Content Include="assets\spritesheet.png" />

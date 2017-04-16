@@ -68,7 +68,7 @@
             'type': 'text',
             "name": 'lifeText',
             "txt": 'Lifes: ',
-            "font": "20px Futura",
+            "font": "25px Futura",
             "fill": "white",
             "x": 1150,
             "y": 10,
@@ -77,28 +77,28 @@
             'type': 'text',
             "name": 'lifeCounter',
             "txt": '0',
-            "font": "20px Futura",
+            "font": "25px Futura",
             "fill": "white",
-            "x": 1210,
+            "x": 1220,
             "y": 10,
             "visible": true
         }, {
             'type': 'text',
             "name": 'scoreText',
             "txt": 'Score: ',
-            "font": "20px Futura",
+            "font": "25px Futura",
             "fill": "white",
             "x": 1150,
-            "y": 30,
+            "y": 40,
             "visible": true
         }, {
             'type': 'text',
             "name": 'scoreCounter',
             "txt": '0',
-            "font": "20px Futura",
+            "font": "25px Futura",
             "fill": "white",
-            "x": 1210,
-            "y": 30,
+            "x": 1220,
+            "y": 40,
             "visible": true
         }, {
             'type': 'sprite',
@@ -161,7 +161,13 @@
             "y": 150,
             "x": 800,
             "visible": true
-            }
+        }, {
+            'type': 'sprite',
+            "name": 'lost',
+            "asset": 'lost.png',
+            "position": 'center',
+            "visible": false
+        }
         ],
     }
 ];

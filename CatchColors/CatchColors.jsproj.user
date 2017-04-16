@@ -7,7 +7,7 @@
     <DebuggerFlavor>AppHostRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebuggerFlavor>WindowsPhoneEmulatorDebugger</DebuggerFlavor>
+    <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
     <WindowsPhoneEmulatorID>1E9B2624-668E-4436-951E-BBEA16347BC1;Mobile Emulator 10.0.15063.0 720p 5 inch 1GB</WindowsPhoneEmulatorID>
   </PropertyGroup>
 </Project>

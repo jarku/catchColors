@@ -1,270 +1,10 @@
 {
   "frames": 
   {
-    "arrow_left.png": {
-      "frame": {
-        "x": 1281,
-        "y": 320,
-        "w": 76,
-        "h": 75
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 76,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 76,
-        "h": 75
-      }
-    },
-    "arrow_right.png": {
-      "frame": {
-        "x": 1281,
-        "y": 396,
-        "w": 75,
-        "h": 75
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 75,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 75,
-        "h": 75
-      }
-    },
-    "back.png": {
-      "frame": {
-        "x": 1038,
-        "y": 1442,
-        "w": 84,
-        "h": 36
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 84,
-        "h": 36
-      },
-      "sourceSize": {
-        "w": 84,
-        "h": 36
-      }
-    },
-    "basket_blue.png": {
-      "frame": {
-        "x": 1281,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 63
-      }
-    },
-    "basket_green.png": {
-      "frame": {
-        "x": 1281,
-        "y": 256,
-        "w": 80,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 63
-      }
-    },
-    "basket_normal.png": {
-      "frame": {
-        "x": 1281,
-        "y": 192,
-        "w": 80,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 63
-      }
-    },
-    "basket_red.png": {
-      "frame": {
-        "x": 1281,
-        "y": 128,
-        "w": 80,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 63
-      }
-    },
-    "basket_small.png": {
-      "frame": {
-        "x": 1038,
-        "y": 1479,
-        "w": 30,
-        "h": 23
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 30,
-        "h": 23
-      },
-      "sourceSize": {
-        "w": 30,
-        "h": 23
-      }
-    },
-    "basket_yellow.png": {
-      "frame": {
-        "x": 1281,
-        "y": 64,
-        "w": 80,
-        "h": 63
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 63
-      }
-    },
-    "chicken_left.png": {
-      "frame": {
-        "x": 1281,
-        "y": 472,
-        "w": 60,
-        "h": 70
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 60,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 60,
-        "h": 70
-      }
-    },
-    "chicken_right.png": {
-      "frame": {
-        "x": 1281,
-        "y": 543,
-        "w": 60,
-        "h": 70
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 60,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 60,
-        "h": 70
-      }
-    },
-    "egg_blue.png": {
-      "frame": {
-        "x": 1144,
-        "y": 1442,
-        "w": 20,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 20,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 20,
-        "h": 25
-      }
-    },
-    "egg_green.png": {
-      "frame": {
-        "x": 1186,
-        "y": 1442,
-        "w": 20,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 20,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 20,
-        "h": 25
-      }
-    },
     "egg_normal.png": {
       "frame": {
-        "x": 1123,
-        "y": 1442,
+        "x": 1229,
+        "y": 1691,
         "w": 20,
         "h": 25
       },
@@ -283,8 +23,8 @@
     },
     "egg_red.png": {
       "frame": {
-        "x": 1207,
-        "y": 1442,
+        "x": 1250,
+        "y": 1717,
         "w": 20,
         "h": 25
       },
@@ -303,8 +43,8 @@
     },
     "egg_yellow.png": {
       "frame": {
-        "x": 1165,
-        "y": 1442,
+        "x": 1229,
+        "y": 1717,
         "w": 20,
         "h": 25
       },
@@ -341,6 +81,26 @@
         "h": 720
       }
     },
+    "lost.png": {
+      "frame": {
+        "x": 0,
+        "y": 1442,
+        "w": 695,
+        "h": 371
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 695,
+        "h": 371
+      },
+      "sourceSize": {
+        "w": 695,
+        "h": 371
+      }
+    },
     "menu.png": {
       "frame": {
         "x": 0,
@@ -363,8 +123,8 @@
     },
     "options.png": {
       "frame": {
-        "x": 647,
-        "y": 1442,
+        "x": 696,
+        "y": 1608,
         "w": 253,
         "h": 82
       },
@@ -383,7 +143,7 @@
     },
     "options_hover.png": {
       "frame": {
-        "x": 0,
+        "x": 696,
         "y": 1442,
         "w": 382,
         "h": 82
@@ -403,8 +163,8 @@
     },
     "play.png": {
       "frame": {
-        "x": 901,
-        "y": 1442,
+        "x": 696,
+        "y": 1691,
         "w": 136,
         "h": 82
       },
@@ -423,8 +183,8 @@
     },
     "play_hover.png": {
       "frame": {
-        "x": 383,
-        "y": 1442,
+        "x": 696,
+        "y": 1525,
         "w": 263,
         "h": 82
       },
@@ -440,5 +200,265 @@
         "w": 263,
         "h": 82
       }
+    },
+    "arrow_left.png": {
+      "frame": {
+        "x": 833,
+        "y": 1691,
+        "w": 76,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 75
+      }
+    },
+    "arrow_right.png": {
+      "frame": {
+        "x": 910,
+        "y": 1691,
+        "w": 75,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 75,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 75,
+        "h": 75
+      }
+    },
+    "back.png": {
+      "frame": {
+        "x": 696,
+        "y": 1774,
+        "w": 84,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 84,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 84,
+        "h": 36
+      }
+    },
+    "basket_blue.png": {
+      "frame": {
+        "x": 986,
+        "y": 1691,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_green.png": {
+      "frame": {
+        "x": 1067,
+        "y": 1691,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_normal.png": {
+      "frame": {
+        "x": 1148,
+        "y": 1691,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_red.png": {
+      "frame": {
+        "x": 950,
+        "y": 1608,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "basket_small.png": {
+      "frame": {
+        "x": 781,
+        "y": 1774,
+        "w": 30,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 30,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 30,
+        "h": 23
+      }
+    },
+    "basket_yellow.png": {
+      "frame": {
+        "x": 1031,
+        "y": 1608,
+        "w": 80,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 63
+      }
+    },
+    "chicken_left.png": {
+      "frame": {
+        "x": 960,
+        "y": 1525,
+        "w": 60,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 70
+      }
+    },
+    "chicken_right.png": {
+      "frame": {
+        "x": 1021,
+        "y": 1525,
+        "w": 60,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 70
+      }
+    },
+    "egg_blue.png": {
+      "frame": {
+        "x": 1250,
+        "y": 1691,
+        "w": 20,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 20,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 20,
+        "h": 25
+      }
+    },
+    "egg_green.png": {
+      "frame": {
+        "x": 1112,
+        "y": 1608,
+        "w": 20,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 20,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 20,
+        "h": 25
+      }
     }
-  },"meta":{"app":"https://www.leshylabs.com/apps/sstool/","version":"Leshy SpriteSheet Tool v0.8.4","image":"spritesheet.png","size":{"w":1361,"h":1524},"scale":1}}
+  },"meta":{"app":"https://www.leshylabs.com/apps/sstool/","version":"Leshy SpriteSheet Tool v0.8.4","image":"spritesheet.png","size":{"w":1280,"h":1813},"scale":1}}
